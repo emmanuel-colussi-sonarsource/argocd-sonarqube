@@ -1,0 +1,19 @@
+searchNodes:
+  persistence:
+    storageClassName: "managed-csi"
+
+ApplicationNodes:
+  existingJwtSecret: sonarqube-dce-auth-jwt
+
+service:
+  type: LoadBalancer
+  externalPort: 9000
+  internalPort: 9000
+  labels:
+  annotations: 
+   service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+   service.beta.kubernetes.io/aws-load-balancer-type: nlb
+
+postgresql:
+ image:
+  tag: 11.22.0-debian-11-r4
